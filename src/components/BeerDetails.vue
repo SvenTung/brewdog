@@ -3,15 +3,16 @@
     <h2>{{beer.name}}</h2>
     <p>Tagline: {{beer.tagline}}</p>
     <p>Description: {{beer.description}}</p>
-    {{beer.favourite}}
+    <p>Favourited: {{beer.favourite}}</p>
     <img v-bind:src="beer.image_url">
+    <p style="display: none">{{changed}} </p>
   </div>
 </template>
 
 <script>
 export default {
   name: "beer-details",
-  props: ['beer']
+  props: ['beer', 'changed']
 }
 </script>
 

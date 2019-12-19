@@ -12,12 +12,12 @@
 
       <div id="beer-details">
         <h2>Beer Details</h2>
-        <beer-details v-if="selectedBeer" :beer='selectedBeer'></beer-details>
+        <beer-details v-if="selectedBeer" :beer='selectedBeer' :changed="changed"></beer-details>
       </div>
 
       <div id="fav-beer-list">
         <h2>Favourite Beers List</h2>
-        <fav-beer-list v-for="(beer, index) in beers"  :changed="changed" :beer="beer" :index="index"></fav-beer-list>
+        <fav-beer-list v-for="(beer, index) in beers" :changed="changed" :beer="beer" :index="index"></fav-beer-list>
       </div>
     </div>
 
@@ -52,7 +52,6 @@ export default {
       for (let beer of this.beers){
          beer.favourite = false;
       }
-
     })
 
     eventBus.$on ('selected-beer', (beer) => {
@@ -62,12 +61,10 @@ export default {
     eventBus.$on ('favourite-beer', (beer_key) => {
       if (this.beers[beer_key].favourite == true) {
         this.changed = !this.changed;
-        console.log("triggered favourite-beer ");
         this.beers[beer_key].favourite = false
       }
       else {
         this.changed = !this.changed;
-        console.log("set fav favourite-beer ");
         this.beers[beer_key].favourite = true
       }
     });

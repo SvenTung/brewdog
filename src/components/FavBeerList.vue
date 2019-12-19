@@ -1,22 +1,22 @@
 <template lang="html">
 <div>
-  <li v-if="beer.favourite == true">{{beer.name}}</li>
+  <li v-if="beer.favourite == true" v-on:click="handleListClick">{{beer.name}}</li>
   <p style="display: none">{{changed}} </p>
 </div>
 
 </template>
 
 <script>
-import BeerListItem from './BeerListItem.vue';
-
+import { eventBus } from '../main.js';
 
 export default {
-name: 'beer-list',
-props: ['beer', 'changed'],
-components: {
-
-}
-
+  name: 'beer-list',
+  props: ['beer', 'changed'],
+  methods: {
+    handleListClick(){
+      eventBus.$emit('selected-beer', this.beer)
+    }
+  }
 }
 </script>
 
